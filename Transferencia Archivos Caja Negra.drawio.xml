@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.5.2 Safari/537.36" version="29.6.1">
+  <diagram name="Página-1" id="gTN13Mox4rD1LkuFGfLS">
+    <mxGraphModel dx="2132" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3VtPT8euKseMFIJPbHYm-3" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="280" width="760" x="10" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-13" connectable="0" parent="3VtPT8euKseMFIJPbHYm-3" style="group" value="" vertex="1">
+          <mxGeometry height="220" width="760" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-12" edge="1" parent="rageQbcTUp6QJ6ufzUbh-13" source="3OknHAFj0huMdsfrOOB4-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="rageQbcTUp6QJ6ufzUbh-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3OknHAFj0huMdsfrOOB4-1" parent="rageQbcTUp6QJ6ufzUbh-13" style="rounded=1;whiteSpace=wrap;html=1;" value="Implementacion&lt;br/&gt;APP" vertex="1">
+          <mxGeometry height="60" width="120" x="334" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-5" edge="1" parent="rageQbcTUp6QJ6ufzUbh-13" source="rageQbcTUp6QJ6ufzUbh-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="rageQbcTUp6QJ6ufzUbh-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-1" parent="rageQbcTUp6QJ6ufzUbh-13" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Emisor" vertex="1">
+          <mxGeometry height="60" width="30" x="35" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-8" edge="1" parent="rageQbcTUp6QJ6ufzUbh-13" source="rageQbcTUp6QJ6ufzUbh-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="3OknHAFj0huMdsfrOOB4-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-2" parent="rageQbcTUp6QJ6ufzUbh-13" style="rounded=1;whiteSpace=wrap;html=1;" value="Entradas&lt;div&gt;1. Ruta de archivo a enviar&lt;/div&gt;&lt;div&gt;2. IP destino/receptor&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="190" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-9" edge="1" parent="rageQbcTUp6QJ6ufzUbh-13" source="rageQbcTUp6QJ6ufzUbh-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="rageQbcTUp6QJ6ufzUbh-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" />
+              <mxPoint x="665" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-10" parent="rageQbcTUp6QJ6ufzUbh-13" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Receptor" vertex="1">
+          <mxGeometry height="60" width="30" x="605" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rageQbcTUp6QJ6ufzUbh-11" parent="rageQbcTUp6QJ6ufzUbh-13" style="rounded=1;whiteSpace=wrap;html=1;" value="Salidas&lt;div&gt;1. Pregunta si quiere recibir archivo del emisor&lt;br&gt;&lt;div&gt;2. Archivo Recibido&lt;/div&gt;&lt;div&gt;3. Confirmacion de que el archivo no llego corrupto&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="190" x="570" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-2" parent="3VtPT8euKseMFIJPbHYm-3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;" value="Nivel 0" vertex="1">
+          <mxGeometry height="40" width="110" x="340" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-21" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="2. Emisor debe enviar un SYN (protocolo TCP) hacia el receptor que esta escuchando y esperando confirmacion.&lt;div&gt;4. Emisor responde con ACK confirmando que la conexion ya esta hecha.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="300" x="-110" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="1. Receptor se queda escuchando en el puerto 5000 (puerto fijo)&lt;div&gt;3. Receptor recibe el SYN y responde con SYN-ACK.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="300" x="620" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-16" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-18" connectable="0" parent="3VtPT8euKseMFIJPbHYm-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Rol Emisor" vertex="1">
+          <mxGeometry relative="1" x="-0.026" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-17" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-19" connectable="0" parent="3VtPT8euKseMFIJPbHYm-17" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Rol Receptor" vertex="1">
+          <mxGeometry relative="1" x="-0.1667" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-28" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Nivel 1&lt;div&gt;Establecer conexion entre ambas PCs&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="344" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-14" edge="1" parent="1" source="3OknHAFj0huMdsfrOOB4-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-26" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="1. Verifica que archivo exista en la ruta especificada.&lt;div&gt;2. Si existe extraer nombre y el peso exacto en bytes&lt;/div&gt;&lt;div&gt;3. Leer el archivo e ir calculando el hash de a pedazos usando chunking para no saturar la ram&lt;/div&gt;&lt;div&gt;4.&amp;nbsp; Juntar datos de nombre, peso y hash en un JSON para armar el header para el receptor. Usando Big-Endian para el prefijo con la libreria struct&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="300" x="-110" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="1. Se queda esperando a los bytes del emisor&lt;div&gt;2. Una vez recibe bytes, los primeros a recibir sera el JSON con el prefijo o header, con toda la info.&lt;/div&gt;&lt;div&gt;3. En base a esa info prepara la lectura y recibimiento de los archivos.&lt;/div&gt;&lt;div&gt;4. Empezamos el bucle y armamos el binario a pedazos en base a su tamaño, literalmente vamos escribbiendo el binario pedazo a pedazo, no se usan librerias externas.&lt;/div&gt;&lt;div&gt;5. Una vez terminamos de construir el archivo se debe calcular su hash y compararlo con el recibido desde el header.&lt;/div&gt;&lt;div&gt;6. Si los hash son iguales mandarle al emisor la confirmacion que el archivo llego sin problemas&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="370" x="620" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-27" edge="1" parent="1" source="3VtPT8euKseMFIJPbHYm-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="3VtPT8euKseMFIJPbHYm-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Nivel 2&lt;div&gt;Realizar el traspaso de los bytes del archivo&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="344" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="3VtPT8euKseMFIJPbHYm-30" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Notas adicionales&lt;/h1&gt;&lt;p&gt;Para permitir que una pc sea tanto emisor como receptor al mismo tiempo se deben usar conceptos como la concurrencia y el multi hilo. Esto va a permitir dejar escuchando a la pc indepentiemente si esta mandando un archivo o si esta recibiendo otro, Permitiendo subir y recibir archivos de forma simultanea. Asi como poder recibir dos archivos al mismo tiempo.&lt;/p&gt;" vertex="1">
+          <mxGeometry height="150" width="360" x="234" y="990" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
