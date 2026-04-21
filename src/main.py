@@ -4,6 +4,7 @@ import tkinter as Tk
 import threading
 
 from core.emisor import Emisor
+from core.receptor import Receptor
 from tkinter import filedialog
 from pathlib import Path
 
@@ -24,15 +25,9 @@ def iniciar_servidor():
             while True:
                 try:
                     socket_conectado, IP = servidor.accept()
-                    while True:
-                        "Este bucle es para probar la logica del emisor"
-                        archivo = socket_conectado.recv(1024)
+                    unReceptor = Receptor(socket_conectado, IP)
+                    unReceptor.iniciar_transferencia()
 
-                        if not archivo:
-                            print("Datos enviados correctamente")
-                            break
-
-                        print(archivo.decode("utf-8"))
                 except Exception as e:
                     print(f"Conexion finalizada por un error: {e}")
     except OSError as error:
@@ -70,7 +65,10 @@ if __name__ == "__main__":
         """))
 
         if op == 1:
-            unEmisor = Emisor("nada","127.0.0.1", 5000)
+            archivo = seleccionar_archivos()
+            ip = "127.0.0.1"
+            puerto = 5000
+            unEmisor = Emisor(archivo,ip, puerto)
             unEmisor.iniciar_conexion()
         if op == 2:
             print("Esperando Conexiones...")
