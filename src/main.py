@@ -5,9 +5,10 @@ import threading
 
 from core.emisor import Emisor
 from core.receptor import Receptor
+from pathlib import Path
 from tkinter import filedialog
 
-def iniciar_servidor(puerto:int):
+def iniciar_servidor(puerto:int, ruta):
     """
     Esta funcion se encarga de hacer que la PC actue como servidor y que pueda recibir
     archivos, ya que sera usado con un hilo para quedar en ejecucion esperando una 
@@ -17,6 +18,7 @@ def iniciar_servidor(puerto:int):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as servidor:
             servidor.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            servidor.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 1024*1024)
             servidor.bind(("0.0.0.0",puerto))
             servidor.listen(5)
             print("Conexion Exitosa!")
@@ -24,7 +26,7 @@ def iniciar_servidor(puerto:int):
             while True:
                 try:
                     socket_conectado, IP = servidor.accept()
-                    unReceptor = Receptor(socket_conectado, IP)
+                    unReceptor = Receptor(socket_conectado, IP, ruta)
                     unReceptor.iniciar_transferencia()
 
                 except Exception as e:
@@ -59,12 +61,14 @@ if __name__ == "__main__":
 
         if op == 1:
             archivo = seleccionar_archivos()
-            ip = "127.0.0.1"
+            ip = input("Ingrese la IP destino: ")
             unEmisor = Emisor(archivo,ip, puerto)
             unEmisor.iniciar_conexion()
         if op == 2:
             try:
-                unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,))
+                ruta = input("Ingrese la ruta destino: ")
+                ruta_real = Path(ruta).expanduser()
+                unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,ruta_real))
                 unHilo.start()
                 time.sleep(0.5)
                 print("Esperando Conexiones...")

@@ -12,13 +12,13 @@ class Emisor:
         self.__puerto = puerto
 
     def iniciar_conexion(self):
-        socket_emisor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as emisor:
             try:
                 emisor.connect((self.__IP,self.__puerto))
                 print(f"Emisor conectado a la IP: {self.__IP}, en el puerto: {self.__puerto}")
                 self.crear_enviar_header(emisor)
+                self.enviar_datos(emisor)
 
             except Exception as error:
                 print(f"Ocurrio un error al realizar la conexion con {self.__IP} en el puerto {self.__puerto}, error: {error}")
@@ -39,5 +39,20 @@ class Emisor:
         emisor.sendall(tamaño_json)
         emisor.sendall(info)
 
-    def enviar_datos(self):
-        pass
+    def enviar_datos(self, emisor):
+        tamaño_chunk = 1024
+
+        try:
+            with open (self.__ruta, "rb") as archivo:
+                while True:
+                    chunk = archivo.read(tamaño_chunk)
+
+                    if not chunk:
+                        break
+
+                    emisor.sendall(chunk)
+        except Exception as error:
+            print(f"No se pudo completar el envio por {error}")
+        else:
+            print("Envio del archivo completado con exito!")
+                
