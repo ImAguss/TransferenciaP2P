@@ -6,9 +6,8 @@ import threading
 from core.emisor import Emisor
 from core.receptor import Receptor
 from tkinter import filedialog
-from pathlib import Path
 
-def iniciar_servidor():
+def iniciar_servidor(puerto:int):
     """
     Esta funcion se encarga de hacer que la PC actue como servidor y que pueda recibir
     archivos, ya que sera usado con un hilo para quedar en ejecucion esperando una 
@@ -18,7 +17,7 @@ def iniciar_servidor():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as servidor:
             servidor.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            servidor.bind(("0.0.0.0",5000))
+            servidor.bind(("0.0.0.0",puerto))
             servidor.listen(5)
             print("Conexion Exitosa!")
 
@@ -30,6 +29,7 @@ def iniciar_servidor():
 
                 except Exception as e:
                     print(f"Conexion finalizada por un error: {e}")
+
     except OSError as error:
         pass
             
@@ -47,17 +47,10 @@ def seleccionar_archivos():
     return ruta
 
 if __name__ == "__main__":
+    puerto = 5000
+    menu = True
 
-    try:
-        unHilo = threading.Thread(target=iniciar_servidor,daemon=True)
-        unHilo.start()
-        time.sleep(0.5)
-    except Exception as error:
-        print(f"Fallo al crear el hilo de ejecucion del servidor")
-
-
-
-    while True:
+    while menu:
         print("Seleccione las Opciones:")
         op = int(input("""
         1: Emisor
@@ -67,11 +60,17 @@ if __name__ == "__main__":
         if op == 1:
             archivo = seleccionar_archivos()
             ip = "127.0.0.1"
-            puerto = 5000
             unEmisor = Emisor(archivo,ip, puerto)
             unEmisor.iniciar_conexion()
         if op == 2:
-            print("Esperando Conexiones...")
-            break
-
-    unHilo.join()
+            try:
+                unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,))
+                unHilo.start()
+                time.sleep(0.5)
+                print("Esperando Conexiones...")
+                menu = False
+                unHilo.join()
+            except Exception as error:
+                print(f"Fallo al crear el hilo de ejecucion del servidor")
+            except KeyboardInterrupt:
+                print("\nCerrando Servidor...")

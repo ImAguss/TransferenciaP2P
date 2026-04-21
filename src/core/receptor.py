@@ -13,5 +13,7 @@ class Receptor:
         datos = self.__emisor.recv(4)
         tamaño, = struct.unpack("!I",datos)
 
-        json_uwu = self.__emisor.recv(tamaño).decode('utf-8')
-        print(json_uwu)
+        header = self.__emisor.recv(tamaño).decode('utf-8')
+        if header:
+            print("Datos recibidos!")
+            print(header)
