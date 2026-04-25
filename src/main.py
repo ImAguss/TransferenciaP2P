@@ -5,6 +5,7 @@ import threading
 
 from core.emisor import Emisor
 from core.receptor import Receptor
+
 from pathlib import Path
 from tkinter import filedialog
 
@@ -52,29 +53,40 @@ if __name__ == "__main__":
     puerto = 5000
     menu = True
 
-    while menu:
-        print("Seleccione las Opciones:")
-        op = int(input("""
-        1: Emisor
-        2: Receptor
-        """))
+    try:
+        while menu:
+            print("Seleccione las Opciones:")
+            op = int(input("""
+            0: Cerrar Programa
+            1: Emisor
+            2: Receptor
+            """))
 
-        if op == 1:
-            archivo = seleccionar_archivos()
-            ip = input("Ingrese la IP destino: ")
-            unEmisor = Emisor(archivo,ip, puerto)
-            unEmisor.iniciar_conexion()
-        if op == 2:
-            try:
-                ruta = input("Ingrese la ruta destino: ")
-                ruta_real = Path(ruta).expanduser()
-                unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,ruta_real))
-                unHilo.start()
-                time.sleep(0.5)
-                print("Esperando Conexiones...")
-                menu = False
-                unHilo.join()
-            except Exception as error:
-                print(f"Fallo al crear el hilo de ejecucion del servidor")
-            except KeyboardInterrupt:
-                print("\nCerrando Servidor...")
+            if op == 1:
+                archivo = seleccionar_archivos()
+                ip = input("Ingrese la IP destino: ")
+                unEmisor = Emisor(archivo,ip, puerto)
+                unEmisor.iniciar_conexion()
+            elif op == 2:
+                try:
+                    ruta = input("Ingrese la ruta destino: ")
+                    ruta_real = Path(ruta).expanduser()
+                    unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,ruta_real))
+                    unHilo.start()
+                    time.sleep(0.5)
+                    print("Esperando Conexiones...")
+                    print("Use Ctrl + C para cerrar el servidor.")
+                    menu = False
+                    unHilo.join()
+                except Exception as error:
+                    print(f"Fallo al crear el hilo de ejecucion del servidor")
+                except KeyboardInterrupt:
+                    print("\nCerrando Servidor...")
+            elif op == 0:
+                print("Cerrando Programa...")
+                break
+            else:
+                print("Ingrese una Opcion valida.")
+                continue
+    except KeyboardInterrupt:
+        print("\nCerrando Programa...")

@@ -3,6 +3,7 @@ import json
 import struct
 
 from pathlib import Path
+from core.utils.verificacion_archivos import VerificacionArchivos
 
 class Emisor:
 
@@ -10,6 +11,7 @@ class Emisor:
         self.__ruta = ruta
         self.__IP = IP
         self.__puerto = puerto
+        self.__verificador = VerificacionArchivos()
 
     def iniciar_conexion(self):
 
@@ -28,10 +30,13 @@ class Emisor:
 
     def crear_enviar_header(self,emisor):
         archivo = Path(self.__ruta)
+        print(self.__ruta)
+        hashing_archivo = self.__verificador.GenerarHashArchivo(self.__ruta)
         info_archivo = {
             "nombre": archivo.name,
             "size/bytes": archivo.stat().st_size,
-            "tipo": archivo.suffix
+            "tipo": archivo.suffix,
+            "hash": hashing_archivo
         }
         
         info = json.dumps(info_archivo, indent=4).encode('utf-8')

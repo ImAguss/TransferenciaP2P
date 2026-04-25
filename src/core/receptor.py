@@ -2,6 +2,8 @@ import struct
 import json
 import socket
 
+from core.utils.verificacion_archivos import VerificacionArchivos
+
 from pathlib import Path
 
 class Receptor:
@@ -10,6 +12,7 @@ class Receptor:
         self.__emisor = emisor
         self.__IP = IP
         self.__ruta = ruta
+        self.__verificador = VerificacionArchivos()
 
     def iniciar_transferencia(self):
         tamaño_json = self.__emisor.recv(4)
@@ -26,10 +29,11 @@ class Receptor:
             if op.upper() == 'N':
                 raise Exception
 
-    def recibir_archivo(self, header):
+    def recibir_archivo(self, header)->None:
         tamaño_chunk = 1024
         tamaño_archivo = header["size/bytes"]
         nombre_archivo = header["nombre"]
+        hashing_recibido = header["hash"]
         bytes_recibidos = 0
         ruta = self.__ruta / nombre_archivo
 
@@ -44,6 +48,9 @@ class Receptor:
 
                     archivo_recibido.write(chunk)
                     bytes_recibidos += len(chunk)
+            hashing_archivo_recibido = self.__verificador.GenerarHashArchivo(f"{self.__ruta}/{nombre_archivo}")
+            if hashing_archivo_recibido != hashing_recibido:
+                raise ValueError(f"Hashes no coinciden.")
 
         except Exception as error:
             print(f"No se pudo recibir el archivo por: {error}")
