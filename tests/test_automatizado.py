@@ -2,7 +2,12 @@ import socket
 import threading
 import time
 import os
+import sys
 from pathlib import Path
+
+# Añadimos el directorio raíz del proyecto al sys.path para poder importar 'src'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.core.emisor import Emisor
 from src.core.receptor import Receptor
 
