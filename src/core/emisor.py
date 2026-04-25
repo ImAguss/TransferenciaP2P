@@ -3,7 +3,7 @@ import json
 import struct
 
 from pathlib import Path
-from core.utils.verificacion_archivos import VerificacionArchivos
+from .utils.verificacion_archivos import VerificacionArchivos
 
 class Emisor:
 

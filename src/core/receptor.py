@@ -2,7 +2,7 @@ import struct
 import json
 import socket
 
-from core.utils.verificacion_archivos import VerificacionArchivos
+from .utils.verificacion_archivos import VerificacionArchivos
 
 from pathlib import Path
 
