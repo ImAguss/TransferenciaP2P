@@ -1,7 +1,9 @@
 import socket
 import time
-import tkinter as Tk
 import threading
+import os
+import readline
+import glob
 
 from core.emisor import Emisor
 from core.receptor import Receptor
@@ -36,18 +38,26 @@ def iniciar_servidor(puerto:int, ruta):
     except OSError as error:
         pass
             
+def autocompletar_rutas(texto, estado):
+    texto = os.path.expanduser(texto)
+    if os.path.isdir(texto) and not texto.endswith(os.sep):
+        coincidencias = glob.glob(texto + os.sep + '*')
+    else:
+        coincidencias = glob.glob(texto + '*')
+        coincidencias = [c + os.sep if os.path.isdir(c) else c for c in coincidencias]
 
+    try:
+        return coincidencias[estado]
+    except IndexError:
+        return None
 
 def seleccionar_archivos():
-    """
-    Me da paja hacer la logica del autocompletado para la terminal
-    de momento usaremos esto.
-    """
+    readline.set_completer_delims(' \t\n; ')
+    readline.parse_and_bind("tab: complete")
+    readline.set_completer(autocompletar_rutas)
 
-    root = Tk.Tk()
-    root.withdraw()
-    ruta = filedialog.askopenfilename(title="Selecciona el archivo a enviar")
-    return ruta
+    ruta = input("Ingrese la ruta del archivo/carpeta a enviar: ")
+    return Path(os.path.expanduser(ruta))
 
 if __name__ == "__main__":
     puerto = 5000

@@ -4,6 +4,7 @@ import struct
 
 from pathlib import Path
 from .utils.verificacion_archivos import VerificacionArchivos
+from .utils.comprimir_descomprimir_archivos import Comprimir_Descomprimir_Archivos
 
 class Emisor:
 
@@ -12,8 +13,13 @@ class Emisor:
         self.__IP = IP
         self.__puerto = puerto
         self.__verificador = VerificacionArchivos()
+        self.__zip = Comprimir_Descomprimir_Archivos()
 
     def iniciar_conexion(self):
+
+        if not self.__ruta.is_file():
+            self.__ruta = self.__zip.Comprimir(self.__ruta)
+
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as emisor:
             try:

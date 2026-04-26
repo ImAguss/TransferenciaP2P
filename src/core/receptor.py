@@ -1,8 +1,9 @@
-import struct
+import struct 
 import json
 import socket
 
 from .utils.verificacion_archivos import VerificacionArchivos
+from .utils.comprimir_descomprimir_archivos import Comprimir_Descomprimir_Archivos
 
 from pathlib import Path
 
@@ -27,7 +28,7 @@ class Receptor:
             if op.upper() == 'S':
                 self.recibir_archivo(header_json)
             if op.upper() == 'N':
-                raise Exception
+                raise Exception("Se rechazo la solicitud del archivo")
 
     def recibir_archivo(self, header)->None:
         tamaño_chunk = 1024
