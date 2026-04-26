@@ -48,6 +48,7 @@ class Receptor:
 
                     archivo_recibido.write(chunk)
                     bytes_recibidos += len(chunk)
+
             hashing_archivo_recibido = self.__verificador.GenerarHashArchivo(f"{self.__ruta}/{nombre_archivo}")
             if hashing_archivo_recibido != hashing_recibido:
                 raise ValueError(f"Hashes no coinciden.")
