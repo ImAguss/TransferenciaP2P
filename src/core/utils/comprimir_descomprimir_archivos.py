@@ -25,6 +25,7 @@ class Comprimir_Descomprimir_Archivos:
         return ruta_zip
 
     def Descomprimir(self, ruta_carpeta_comprimida, ruta_destino):
+        sobrescribir = "S"
 
         ruta = Path(str(ruta_carpeta_comprimida).replace(".zip", ""))
         if ruta.exists(): sobrescribir = input("La carpeta ya existe, sobreescribirla? S/N: ")

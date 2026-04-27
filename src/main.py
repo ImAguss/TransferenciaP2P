@@ -11,9 +11,12 @@ from core.receptor import Receptor
 from pathlib import Path
 from tkinter import filedialog
 
-ruta = Path("~/Descargas/")
+ruta = Path("~/Descargas/").expanduser()
+detener_servidor = threading.Event()
 
-def iniciar_servidor(puerto:int, ruta):
+def iniciar_servidor(puerto:int):
+    global detener_servidor
+    global ruta
     """
     Esta funcion se encarga de hacer que la PC actue como servidor y que pueda recibir
     archivos, ya que sera usado con un hilo para quedar en ejecucion esperando una 
@@ -26,14 +29,17 @@ def iniciar_servidor(puerto:int, ruta):
             servidor.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 1024*1024)
             servidor.bind(("0.0.0.0",puerto))
             servidor.listen(5)
+            servidor.settimeout(2)
             print("Esperando por archivos...")
 
-            while True:
+            while not detener_servidor.is_set():
                 try:
                     socket_conectado, IP = servidor.accept()
                     unReceptor = Receptor(socket_conectado, IP, ruta)
                     unReceptor.iniciar_transferencia()
 
+                except socket.timeout:
+                    pass
                 except Exception as e:
                     print(f"Conexion finalizada por un error: {e}")
 
@@ -65,13 +71,17 @@ def seleccionar_archivos(solo_carpetas=False):
     else:
         return ruta
 
-def menu():
+if __name__ == "__main__":
+    puerto = 5000
+
     try:
         while True:
             print("Seleccione las Opciones:")
-            op = int(input("""
+            op = int(input(f"""
+            Ruta Destino: {ruta}
+
             1: Enviar Archivo.
-            2: Especificar Ruta Destino, Por defecto: Descargas.
+            2: Cambiar Ruta Destino.
             3: Esperar Archivos.
             """))
 
@@ -81,27 +91,24 @@ def menu():
                 unEmisor = Emisor(archivo,ip, puerto)
                 unEmisor.iniciar_conexion()
             elif op == 2:
-                ruta = seleccionar_archivos(solo_carpetas=False)
+                ruta = seleccionar_archivos(solo_carpetas=True)
             elif op == 3:
-                break
+                try:
+                    detener_servidor.clear()
+                    unHilo = threading.Thread(target=iniciar_servidor,daemon=True)
+                    unHilo.start()
+                    time.sleep(0.5)
+                    unHilo.join()
+                except Exception as error:
+                    print(f"Fallo al crear el hilo de ejecucion del servidor")
+                except KeyboardInterrupt:
+                    detener_servidor.set()
+                    print("\nCerrando Servidor...")
+                    continue
             else:
                 print("Ingrese una Opcion valida.")
                 continue
     except KeyboardInterrupt:
         print("\nCerrando Menu...")
 
-if __name__ == "__main__":
-    puerto = 5000
-
-    menu()
-
-    try:
-        unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,ruta))
-        unHilo.start()
-        time.sleep(0.5)
-        unHilo.join()
-    except Exception as error:
-        print(f"Fallo al crear el hilo de ejecucion del servidor")
-    except KeyboardInterrupt:
-        print("\nCerrando Programa...")
 

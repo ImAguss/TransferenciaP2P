@@ -1,9 +1,7 @@
 import hashlib
 
 class VerificacionArchivos:
-
-    def __init__(self):
-        self.__hashing = hashlib.sha256()
+    hashing = hashlib.sha256()
 
     def GenerarHashArchivo(self, ruta):
         """
@@ -21,4 +19,4 @@ class VerificacionArchivos:
                 self.__hashing.update(chunk)
 
         # Retorna el valor en Hexadecimal
-        return self.__hashing.hexdigest()
+        return hashing.hexdigest()

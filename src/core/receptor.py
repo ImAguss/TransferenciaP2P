@@ -56,8 +56,8 @@ class Receptor:
             if hashing_archivo_recibido != hashing_recibido: raise ValueError(f"Hashes no coinciden.")
             if tipo == ".zip": self.__zip.Descomprimir(ruta_carpeta_comprimida=ruta, ruta_destino=self.__ruta)
 
-        except PermissionError("Usted no tiene permisos..."):
-            print(PermissionError)
+        except PermissionError:
+            print("Usted no tiene permisos para guardar el archivo en esa ruta.")
         except Exception as error:
             print(f"No se pudo recibir el archivo por: {error}")
         else:
