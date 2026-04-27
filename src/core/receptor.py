@@ -14,6 +14,7 @@ class Receptor:
         self.__IP = IP
         self.__ruta = ruta
         self.__verificador = VerificacionArchivos()
+        self.__zip = Comprimir_Descomprimir_Archivos()
 
     def iniciar_transferencia(self):
         tamaño_json = self.__emisor.recv(4)
@@ -35,6 +36,7 @@ class Receptor:
         tamaño_archivo = header["size/bytes"]
         nombre_archivo = header["nombre"]
         hashing_recibido = header["hash"]
+        tipo = header["tipo"]
         bytes_recibidos = 0
         ruta = self.__ruta / nombre_archivo
 
@@ -51,9 +53,11 @@ class Receptor:
                     bytes_recibidos += len(chunk)
 
             hashing_archivo_recibido = self.__verificador.GenerarHashArchivo(f"{self.__ruta}/{nombre_archivo}")
-            if hashing_archivo_recibido != hashing_recibido:
-                raise ValueError(f"Hashes no coinciden.")
+            if hashing_archivo_recibido != hashing_recibido: raise ValueError(f"Hashes no coinciden.")
+            if tipo == ".zip": self.__zip.Descomprimir(ruta_carpeta_comprimida=ruta, ruta_destino=self.__ruta)
 
+        except PermissionError("Usted no tiene permisos..."):
+            print(PermissionError)
         except Exception as error:
             print(f"No se pudo recibir el archivo por: {error}")
         else:

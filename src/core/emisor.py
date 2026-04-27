@@ -36,7 +36,6 @@ class Emisor:
 
     def crear_enviar_header(self,emisor):
         archivo = Path(self.__ruta)
-        print(self.__ruta)
         hashing_archivo = self.__verificador.GenerarHashArchivo(self.__ruta)
         info_archivo = {
             "nombre": archivo.name,
