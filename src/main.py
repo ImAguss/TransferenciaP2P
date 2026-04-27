@@ -26,6 +26,7 @@ def iniciar_servidor(puerto:int, ruta):
             servidor.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 1024*1024)
             servidor.bind(("0.0.0.0",puerto))
             servidor.listen(5)
+            print("Esperando por archivos...")
 
             while True:
                 try:
@@ -69,9 +70,9 @@ def menu():
         while True:
             print("Seleccione las Opciones:")
             op = int(input("""
-            0: Cerrar Programa
-            1: Enviar Archivo
-            2: Especificar Ruta Destino, Por defecto: Descargas
+            1: Enviar Archivo.
+            2: Especificar Ruta Destino, Por defecto: Descargas.
+            3: Esperar Archivos.
             """))
 
             if op == 1:
@@ -81,22 +82,20 @@ def menu():
                 unEmisor.iniciar_conexion()
             elif op == 2:
                 ruta = seleccionar_archivos(solo_carpetas=False)
-            elif op == 0:
-                print("Cerrando Programa...")
+            elif op == 3:
                 break
             else:
                 print("Ingrese una Opcion valida.")
                 continue
     except KeyboardInterrupt:
-        print("\nCerrando Programa...")
+        print("\nCerrando Menu...")
 
 if __name__ == "__main__":
     puerto = 5000
 
-    try:
-        menu = threading.Thread(target=menu, daemon=True)
-        menu.start()
+    menu()
 
+    try:
         unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,ruta))
         unHilo.start()
         time.sleep(0.5)
@@ -104,5 +103,5 @@ if __name__ == "__main__":
     except Exception as error:
         print(f"Fallo al crear el hilo de ejecucion del servidor")
     except KeyboardInterrupt:
-        print("\nCerrando Servidor...")
+        print("\nCerrando Programa...")
 
