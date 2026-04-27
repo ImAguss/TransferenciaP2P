@@ -95,7 +95,7 @@ if __name__ == "__main__":
             elif op == 3:
                 try:
                     detener_servidor.clear()
-                    unHilo = threading.Thread(target=iniciar_servidor,daemon=True)
+                    unHilo = threading.Thread(target=iniciar_servidor,daemon=True, args=(puerto,) )
                     unHilo.start()
                     time.sleep(0.5)
                     unHilo.join()
