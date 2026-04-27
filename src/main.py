@@ -31,6 +31,7 @@ def iniciar_servidor(puerto:int):
             servidor.listen(5)
             servidor.settimeout(2)
             print("Esperando por archivos...")
+            print("Usa Ctrl + C para cerrar el servidor.")
 
             while not detener_servidor.is_set():
                 try:
@@ -109,6 +110,6 @@ if __name__ == "__main__":
                 print("Ingrese una Opcion valida.")
                 continue
     except KeyboardInterrupt:
-        print("\nCerrando Menu...")
+        print("\nCerrando Programa...")
 
 
