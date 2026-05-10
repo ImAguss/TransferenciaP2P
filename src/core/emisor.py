@@ -61,8 +61,10 @@ class Emisor:
                         break
 
                     emisor.sendall(chunk)
+
         except Exception as error:
             print(f"No se pudo completar el envio por {error}")
         else:
+            self.__zip.borrar_zip(self.__ruta)
             print("Envio del archivo completado con exito!")
                 

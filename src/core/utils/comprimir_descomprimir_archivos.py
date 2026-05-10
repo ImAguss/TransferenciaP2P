@@ -21,8 +21,11 @@ class Comprimir_Descomprimir_Archivos:
                     ruta_relativa = archivo.relative_to(ruta_absoluta.parent)
                     carpeta_comprimida.write(archivo, arcname=ruta_relativa)
 
-        print(ruta_zip)
         return ruta_zip
+
+    def borrar_zip(self, ruta_zip):
+        print("Borrado")
+        ruta_zip.unlink()
 
     def Descomprimir(self, ruta_carpeta_comprimida, ruta_destino):
         sobrescribir = "S"
